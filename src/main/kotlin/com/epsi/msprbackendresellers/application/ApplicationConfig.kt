@@ -20,7 +20,7 @@ class WebClientConfig {
     @Bean
     fun webClient(): WebClient {
         return WebClient.builder()
-            .baseUrl("http://localhost:8888/doli/api/index.php")
+            .baseUrl("http://192.168.5.65:8888/doli/api/index.php")
             .build()
     }
 }

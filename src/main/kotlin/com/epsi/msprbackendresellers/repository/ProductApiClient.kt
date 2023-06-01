@@ -1,13 +1,9 @@
 package com.epsi.msprbackendresellers.repository
 
-import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
-import org.springframework.web.server.ResponseStatusException
 import reactor.core.publisher.Flux
-import org.slf4j.LoggerFactory
 import com.epsi.msprbackendresellers.models.Product
-import org.springframework.web.reactive.function.client.bodyToMono
 import reactor.core.publisher.Mono
 
 @Component
@@ -30,13 +26,4 @@ class ProductApiClient(private val webClient: WebClient) {
             .retrieve()
             .bodyToFlux(Product::class.java)
     }
-
-//    private fun handleError(error: Throwable): Mono<Product> {
-//        logger.error("Error while fetching products: ${error.message}", error)
-//        return Mono.error(
-//            ResponseStatusException(
-//                HttpStatus.FORBIDDEN, error.message
-//            )
-//        )
-//    }
 }
