@@ -1,9 +1,9 @@
-package com.epsi.msprbackendresellers.services.impl
+package com.epsi.msprbackendwebshop.services.impl
 
-import com.epsi.msprbackendresellers.models.Customer
-import com.epsi.msprbackendresellers.models.Order
-import com.epsi.msprbackendresellers.repository.CustomerApiClient
-import com.epsi.msprbackendresellers.services.CustomerService
+import com.epsi.msprbackendwebshop.models.Customer
+import com.epsi.msprbackendwebshop.models.Order
+import com.epsi.msprbackendwebshop.repository.CustomerApiClient
+import com.epsi.msprbackendwebshop.services.CustomerService
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono

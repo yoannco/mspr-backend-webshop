@@ -1,4 +1,4 @@
-package com.epsi.msprbackendresellers
+package com.epsi.msprbackendwebshop
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

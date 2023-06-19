@@ -1,6 +1,6 @@
-package com.epsi.msprbackendresellers.services
+package com.epsi.msprbackendwebshop.services
 
-import com.epsi.msprbackendresellers.models.Product
+import com.epsi.msprbackendwebshop.models.Product
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 

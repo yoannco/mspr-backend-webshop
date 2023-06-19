@@ -1,9 +1,9 @@
-package com.epsi.msprbackendresellers.repository
+package com.epsi.msprbackendwebshop.repository
 
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient
 import reactor.core.publisher.Flux
-import com.epsi.msprbackendresellers.models.Product
+import com.epsi.msprbackendwebshop.models.Product
 import reactor.core.publisher.Mono
 
 @Component

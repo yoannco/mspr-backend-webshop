@@ -1,8 +1,8 @@
-package com.epsi.msprbackendresellers.controllers
+package com.epsi.msprbackendwebshop.controllers
 
-import com.epsi.msprbackendresellers.models.Customer
-import com.epsi.msprbackendresellers.models.Order
-import com.epsi.msprbackendresellers.services.impl.CustomerServiceImpl
+import com.epsi.msprbackendwebshop.models.Customer
+import com.epsi.msprbackendwebshop.models.Order
+import com.epsi.msprbackendwebshop.services.impl.CustomerServiceImpl
 import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.responses.ApiResponse

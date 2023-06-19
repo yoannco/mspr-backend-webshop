@@ -1,4 +1,4 @@
-package com.epsi.msprbackendresellers.models
+package com.epsi.msprbackendwebshop.models
 
 data class User(
     var username : String? = null,

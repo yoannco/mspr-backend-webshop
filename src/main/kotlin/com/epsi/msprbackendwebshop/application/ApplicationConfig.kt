@@ -1,4 +1,4 @@
-package com.epsi.msprbackendresellers.application
+package com.epsi.msprbackendwebshop.application
 
 import org.springframework.boot.SpringApplication
 import org.springframework.context.annotation.Bean
