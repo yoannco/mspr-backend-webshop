@@ -23,6 +23,8 @@ dependencies {
     implementation 'org.json:json:20210307'
     implementation 'org.springframework.data:spring-data-mongodb:4.0.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation group: 'io.projectreactor', name: 'reactor-test', version: '3.1.0.RELEASE'
+
 }
 
 tasks.withType(KotlinCompile) {
