@@ -5,6 +5,10 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.0'
     id 'org.jetbrains.kotlin.jvm' version '1.7.22'
     id 'org.jetbrains.kotlin.plugin.spring' version '1.7.22'
+    id 'application'
+    id 'maven-publish'
+    id("org.sonarqube") version "3.3"
+    id 'jacoco'
 }
 
 group = 'com.epsi'
@@ -15,16 +19,36 @@ repositories {
     mavenCentral()
 }
 
+mainClassName = 'com.epsi.msprbackendwebshop.MsprBackendWebshopApplicationKt'
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
     implementation "org.springdoc:springdoc-openapi-webflux-ui:1.5.12"
     implementation 'org.json:json:20210307'
     implementation 'org.springframework.data:spring-data-mongodb:4.0.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation("org.springdoc:springdoc-openapi-data-rest:1.4.3")
+    implementation("org.springdoc:springdoc-openapi-ui:1.4.3")
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.4.3")
     testImplementation group: 'io.projectreactor', name: 'reactor-test', version: '3.1.0.RELEASE'
+    implementation 'com.sendgrid:sendgrid-java:4.9.3'
+    implementation "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.3"
+}
 
+jacoco {
+    toolVersion = "0.8.7" // Spécifiez la version de Jacoco
+}
+
+tasks.withType(Test) {
+    finalizedBy jacocoTestReport // Génère automatiquement le rapport de couverture après les tests
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true // Génère un rapport XML
+        html.enabled true // Génère un rapport HTML
+    }
 }
 
 tasks.withType(KotlinCompile) {
@@ -36,4 +60,43 @@ tasks.withType(KotlinCompile) {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        // The target repository
+        maven {
+            // Choose whatever name you want
+            name = "GitHubPackages"
+            // The url of the repository, where the artifacts will be published
+            url = "https://maven.pkg.github.com/yoannco/mspr-backend-webshop"
+            credentials {
+                // The credentials (described in the next section)
+                username = System.getenv('MY_GITHUB_ACTOR')
+                password = System.getenv('MY_GITHUB_TOKEN')
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+sonarqube {
+    def exclusions = [
+            "**/src/test/**",
+            "**/src/main/kotlin/**/application/**",
+            "**/src/main/kotlin/**/controllers/**",
+            "**/src/main/kotlin/**/repository/**",
+            "**/src/main/kotlin/**/MsprBackendWebshopApplication.kt",
+            "**/src/main/kotlin/**/services/impl/NotificationServiceImpl.kt",
+    ]
+    properties {
+        property 'sonar.projectKey', 'mspr-backend-webshop'
+        property "sonar.coverage.exclusions", exclusions
+        property 'sonar.dependencyCheck.jsonReportPath', 'build/reports/dependency-check-report.json'
+        property 'sonar.dependencyCheck.htmlReportPath', 'build/reports/dependency-check-report.html'
+    }
 }
